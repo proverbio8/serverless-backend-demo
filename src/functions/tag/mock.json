@@ -1,0 +1,20 @@
+[
+  {
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"text\": \"<B>This is a test</B>\"}"
+  },
+  {
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"text\": \"<B><C> This is a second test </C></B>\"}"
+  },
+  {
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": "{\"text\": \"<B><C>This is a third test, but there is a missing closing tag</C>\"}"
+  }
+]
