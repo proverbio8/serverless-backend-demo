@@ -6,11 +6,11 @@
   "scripts": {
     "prepare": "husky install",
     "test": "./test/run-integration-tests.sh",
-    "build": "tsc",
+    "build": "esbuild serverless.ts --platform=node --target=node18 --outfile=.esbuild/.build/serverless.js",
     "lint": "eslint --fix '*/**/*.{ts,js}' && prettier --write '*/**/*.{ts,js,json}'"
   },
   "engines": {
-    "node": ">=14.15.0"
+    "node": ">=18.18.0"
   },
   "dependencies": {
     "@middy/core": "4.6.4",
