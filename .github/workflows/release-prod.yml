@@ -17,8 +17,16 @@ jobs:
           node-version: '18.x'
           cache: 'npm'
 
-      - name: Install dependencies
-        run: npm install
+      - name: Cache Node.js modules
+        uses: actions/cache@v2
+        with:
+          path: ~/.npm
+          key: ${{ runner.OS }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.OS }}-node-
+
+      - name: Install Dependencies
+        run: npm ci
 
       - name: Setup AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
