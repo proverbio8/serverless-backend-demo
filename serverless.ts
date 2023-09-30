@@ -1,12 +1,11 @@
 import type { AWS } from '@serverless/typescript';
 import tag from '@functions/tag';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const AWS_REGION = process.env.AWS_REGION as any || 'ap-southeast-2';
 
-const serverlessConfiguration: AWS = {
-  service: 'core-lambdas',
-  frameworkVersion: '3',
-  plugins: ['serverless-esbuild', 'serverless-offline'],
+const serverlessConfiguration: AWS = {service: 'core-lambdas',
+  frameworkVersion: '3', plugins: ['serverless-esbuild', 'serverless-offline'],
   provider: {
     name: 'aws',
     runtime: 'nodejs18.x',

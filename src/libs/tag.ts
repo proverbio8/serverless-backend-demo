@@ -1,7 +1,7 @@
 type Tag = {
   tag: string;
   position: number;
-}
+};
 export const validateTags = (input: string): string => {
   if (!input) return null;
 
@@ -10,8 +10,8 @@ export const validateTags = (input: string): string => {
   const stack: Tag[] = [];
 
   for (let i = 0; i < tags.length; i++) {
-    let tag = tags[i][0];
-    let position = tags[i].index as number;
+    const tag = tags[i][0];
+    const position = tags[i].index as number;
 
     // If it's an opening tag
     if (tag[1] !== '/') {
@@ -26,7 +26,7 @@ export const validateTags = (input: string): string => {
       }
 
       // If the closing tag doesn't match the most recent opening tag
-      let lastOpeningTag = stack[stack.length - 1];
+      const lastOpeningTag = stack[stack.length - 1];
       if (lastOpeningTag.tag[1] !== tag[2]) {
         return `Expected </${lastOpeningTag.tag[1]}> found ${tag}`;
       }
@@ -41,5 +41,5 @@ export const validateTags = (input: string): string => {
     return `Expected </${stack[stack.length - 1].tag[1]}> found #`;
   }
 
-  return "Correctly tagged paragraph";
-}
+  return 'Correctly tagged paragraph';
+};
