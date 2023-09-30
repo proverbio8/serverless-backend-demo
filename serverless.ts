@@ -5,9 +5,10 @@ import tag from '@functions/tag';
 // Environment config
 const STAGE = process.env.STAGE || 'dev';
 const AWS_REGION = process.env.AWS_REGION as any || 'ap-southeast-2';
+const SERVICE_NAME = `core-lambdas-${STAGE}`;
 
 const serverlessConfiguration: AWS = {
-  service: `tag-validator-${STAGE}`,
+  service: SERVICE_NAME,
   frameworkVersion: '3',
   plugins: ['serverless-esbuild', 'serverless-offline'],
   provider: {
@@ -22,6 +23,7 @@ const serverlessConfiguration: AWS = {
       AWS_NODEJS_CONNECTION_REUSE_ENABLED: '1',
       NODE_OPTIONS: '--enable-source-maps --stack-trace-limit=1000',
     },
+    role: process.env.AWS_REGION
   },
   // import the function via paths
   functions: { tag },
