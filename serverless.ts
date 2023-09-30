@@ -2,14 +2,18 @@ import type { AWS } from '@serverless/typescript';
 
 import tag from '@functions/tag';
 
+// Environment config
+const STAGE = process.env.STAGE || 'dev';
+const AWS_REGION = process.env.AWS_REGION as any || 'ap-southeast-2';
+
 const serverlessConfiguration: AWS = {
-  service: 'tag-validator',
+  service: `tag-validator-${STAGE}`,
   frameworkVersion: '3',
   plugins: ['serverless-esbuild', 'serverless-offline'],
   provider: {
     name: 'aws',
     runtime: 'nodejs18.x',
-    region: 'ap-southeast-2',
+    region: AWS_REGION,
     apiGateway: {
       minimumCompressionSize: 1024,
       shouldStartNameWithService: true,
