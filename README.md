@@ -18,9 +18,17 @@ Depending on your preferred package manager, follow the instructions below to de
 - Run `yarn` to install the project dependencies
 - Run `yarn sls deploy` to deploy this stack to AWS
 
+## Linting
+- Prettier and ESLint is run before you can run `git add` using Husky hook.
+- Run `npm run lint:fix` to fix linting and prettier manually
+
+
 ## Testing
 This repository runs unit tests as well as integration tests using serverless offline.
 - Run `npm test`
 
+## Deployment
+This repository uses Github Actions to deploy lambdas to AWS and has 3 environments `dev, test, prod`.
+
 ## Documentation
-This repository uses Swagger to document available functions. Please refer to /docs/index.html or visit the Github page
+This repository uses Swagger to document available functions. Please refer to `/docs/index.html` or visit the Github page
