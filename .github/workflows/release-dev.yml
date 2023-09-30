@@ -1,4 +1,4 @@
-name: Deployment of lambdas
+name: Deploy to dev environment
 
 on:
   push:
@@ -26,5 +26,5 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Deploy to development environment
+      - name: Deploying
         run: npx serverless deploy --stage dev

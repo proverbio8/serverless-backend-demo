@@ -1,4 +1,4 @@
-name: Deployment of lambdas
+name: Deploy to test environment
 
 on:
   push:
