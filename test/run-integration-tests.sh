@@ -7,7 +7,7 @@ npx serverless offline start &
 sleep 10
 
 # Run mocha tests
-npx mocha -r ts-node/register --extensions ts 'test/**/*.ts'
+npx mocha -r ts-node/register --reporter spec --extensions ts 'test/**/*.ts'
 
 # Get serverless offline pid
 SLS_PID=$(pgrep -f 'serverless offline start')

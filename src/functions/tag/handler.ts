@@ -1,11 +1,11 @@
 import type { ValidatedEventAPIGatewayProxyEvent } from '@libs/api-gateway';
-import {formatJSONInvalidRequest, formatJSONSuccessResponse} from '@libs/api-gateway';
+import { formatJSONInvalidRequest, formatJSONSuccessResponse } from '@libs/api-gateway';
 import { middyfy } from '@libs/lambda';
 
 import schema from './schema';
-import {validateTags} from "@libs/tag";
+import { validateTags } from '@libs/tag';
 
-const validateTag: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
+const handle: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (event) => {
   if (!event.body.text) {
     return formatJSONInvalidRequest({
       message: `text field is required`,
@@ -16,4 +16,4 @@ const validateTag: ValidatedEventAPIGatewayProxyEvent<typeof schema> = async (ev
   });
 };
 
-export const main = middyfy(validateTag);
+export const main = middyfy(handle);
