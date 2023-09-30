@@ -1,7 +1,7 @@
 {
-  "name": "tag-validator",
+  "name": "core-lambdas",
   "version": "1.0.0",
-  "description": "Tag validator",
+  "description": "Core lambdas services",
   "main": "serverless.ts",
   "scripts": {
     "test": "./test/run-integration-tests.sh",
