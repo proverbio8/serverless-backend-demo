@@ -5,12 +5,21 @@ type Tag = {
 export const validateTags = (input: string): string => {
   if (!input) return null;
 
-  const regex = /<\/?[a-zA-Z]+>/g;
+  const regex = /<\/?[a-zA-Z]*>/g;
   const tags = [...input.matchAll(regex)];
+
+  // Check whether there are no tags in the text
+  if (!tags.length) return "This text doesn't have tags";
+
   const stack: Tag[] = [];
 
   for (let i = 0; i < tags.length; i++) {
     const tag = tags[i][0];
+
+    if (/^<>$/.test(tag) || /^<\/>$/.test(tag)) {
+      return '<> and </> are invalid tags';
+    }
+
     const position = tags[i].index as number;
 
     // If it's an opening tag
