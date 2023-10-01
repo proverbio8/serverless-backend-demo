@@ -5,7 +5,7 @@ type Tag = {
 export const validateTags = (input: string): string => {
   if (!input) return null;
 
-  const regex = /<\/?[A-Z]>/g;
+  const regex = /<\/?[a-zA-Z]+>/g;
   const tags = [...input.matchAll(regex)];
   const stack: Tag[] = [];
 
@@ -27,8 +27,11 @@ export const validateTags = (input: string): string => {
 
       // If the closing tag doesn't match the most recent opening tag
       const lastOpeningTag = stack[stack.length - 1];
-      if (lastOpeningTag.tag[1] !== tag[2]) {
-        return `Expected </${lastOpeningTag.tag[1]}> found ${tag}`;
+      const openingTagName = lastOpeningTag.tag.slice(1, lastOpeningTag.tag.length - 1);
+      const closingTagName = tag.slice(2, tag.length - 1);
+
+      if (openingTagName !== closingTagName) {
+        return `Expected </${openingTagName}> found ${tag}`;
       }
 
       // Otherwise, everything's good, we can remove the last opening tag from the stack
@@ -38,7 +41,9 @@ export const validateTags = (input: string): string => {
 
   if (stack.length) {
     // We have an unmatched opening tag
-    return `Expected </${stack[stack.length - 1].tag[1]}> found #`;
+    const remainderOpeningTag = stack[stack.length - 1];
+    const remainderOpeningTagName = remainderOpeningTag.tag.slice(1, remainderOpeningTag.tag.length - 1);
+    return `Expected </${remainderOpeningTagName}> found #`;
   }
 
   return 'Correctly tagged paragraph';

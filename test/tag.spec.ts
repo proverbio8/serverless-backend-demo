@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import { describe, it } from 'mocha';
-import { validateTags } from '../src/libs/tag';
+import { validateTags } from '@libs/tag';
 
 describe('Tag validation tests', () => {
   it('given an empty text returns null', () => {
@@ -32,6 +32,16 @@ describe('Tag validation tests', () => {
         '<B><C> This should be centred and in boldface, but the tags are wrongly nested </B></C>',
       ),
     ).to.equal('Expected </C> found </B>');
+    expect(
+      validateTags(
+        '<B><CENTER>This should be centred boldface, but the tags are wrongly nested</B></CENTER>',
+      ),
+    ).to.equal('Expected </CENTER> found </B>');
+    expect(
+      validateTags(
+        '<html><p>This should be centred boldface, but the tags are wrongly nested</html></CENpTER>',
+      ),
+    ).to.equal('Expected </p> found </html>');
   });
 
   it('given combination of multiple tags returns success message', () => {
